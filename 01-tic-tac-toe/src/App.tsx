@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import './App.css'
 
+// TODO: force strict types via `tsconfig`
+
 function Square() {
-  // `useState` looks like assining a field (..but where? To the global context?)
+  // TODO: `useState` looks like assining a field (..but where? To the global context?)
+  // TODO: use boolean for the underlying value type
   const [value, setValue] = useState(null);
 
   function handleClick() {
