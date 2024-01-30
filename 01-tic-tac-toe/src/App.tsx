@@ -22,7 +22,7 @@ export default function Board() {
   // TODO: `function` vs lambda
   // TODO: something like reduce would be better?
   // TODO: let TypeScript infer their type?
-  const handleClick = (_: React.MouseEventHandler<HTMLButtonElement>) => {
+  const handleClick = () => {
     // TODO: it's deep clone, right?
     const nexts = squares.slice(); // clone
     nexts[0] = "X";
