@@ -14,6 +14,29 @@ function Square({ value, onSquareClick }: Props) {
   );
 }
 
+// TODO: use map, all, etc.
+function calcWinner(squares: Array<string>) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+
+  return null;
+}
+
 export default function Board() {
   // TODO: use enumeartion type
   const [turnOfX, setTurnOfX] = useState(true);
@@ -27,8 +50,9 @@ export default function Board() {
   // TODO: let TypeScript infer their type?
   // TODO: why can I ignore the first argument? (overloaded?)
   const handleClick = (i: number) => {
+    // TODO: prefer explicit comparison to `null` or not?
     // TODO: null, undefined, ===, !==
-    if (squares[i] != null) {
+    if (squares[i] || calcWinner(squares)) {
       return;
     }
 
