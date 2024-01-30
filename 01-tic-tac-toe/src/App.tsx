@@ -15,19 +15,29 @@ function Square({ value, onSquareClick }: Props) {
 }
 
 export default function Board() {
+  // TODO: use enumeartion type
+  const [turnOfX, setTurnOfX] = useState(true);
+
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
   // TODO: use boolean for the underlying value type
   const [squares, setSquares] = useState(Array(9).fill(null));
 
-  // TODO: `function` vs lambda
+  // TODO: `function` vs arrow
   // TODO: something like reduce would be better?
   // TODO: let TypeScript infer their type?
   // TODO: why can I ignore the first argument? (overloaded?)
   const handleClick = (i: number) => {
     // TODO: it's deep clone, right?
     const nexts = squares.slice(); // clone
-    nexts[i] = "X";
+
+    if (turnOfX) {
+      nexts[i] = "X";
+    } else {
+      nexts[i] = "O";
+    }
+
     setSquares(nexts);
+    setTurnOfX(!turnOfX);
   }
 
   // TODO: use map
