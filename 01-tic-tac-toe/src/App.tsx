@@ -3,37 +3,48 @@ import './App.css'
 
 // TODO: force strict types via `tsconfig`
 
-function Square() {
-  // TODO: `useState` looks like assining a field (..but where? To the global context?)
-  // TODO: use boolean for the underlying value type
-  const [value, setValue] = useState(null);
+type Props = {
+  value: string,
+  onSquareClick?: React.MouseEventHandler<HTMLButtonElement>,
+}
 
-  function handleClick() {
-    setValue('X');
-  }
-
+function Square({ value, onSquareClick }: Props) {
   return (
-    <button className="square" onClick={handleClick}>{value}</button>
+    <button className="square" onClick={onSquareClick}>{value}</button>
   );
 }
 
 export default function Board() {
+  // TODO: `useState` looks like assining a field (..but where? To the global context?)
+  // TODO: use boolean for the underlying value type
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  // TODO: `function` vs lambda
+  // TODO: something like reduce would be better?
+  // TODO: let TypeScript infer their type?
+  const handleClick = (_: React.MouseEventHandler<HTMLButtonElement>) => {
+    // TODO: it's deep clone, right?
+    const nexts = squares.slice(); // clone
+    nexts[0] = "X";
+    setSquares(nexts);
+  }
+
   return (
     <>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[0]} onSquareClick={handleClick} />
+        <Square value={squares[1]} onSquareClick={handleClick} />
+        <Square value={squares[2]} onSquareClick={handleClick} />
       </div >
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[3]} onSquareClick={handleClick} />
+        <Square value={squares[4]} onSquareClick={handleClick} />
+        <Square value={squares[5]} onSquareClick={handleClick} />
       </div >
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={squares[6]} onSquareClick={handleClick} />
+        <Square value={squares[7]} onSquareClick={handleClick} />
+        <Square value={squares[8]} onSquareClick={handleClick} />
       </div >
     </>
   );
