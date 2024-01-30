@@ -27,6 +27,11 @@ export default function Board() {
   // TODO: let TypeScript infer their type?
   // TODO: why can I ignore the first argument? (overloaded?)
   const handleClick = (i: number) => {
+    // TODO: null, undefined, ===, !==
+    if (squares[i] != null) {
+      return;
+    }
+
     // TODO: it's deep clone, right?
     const nexts = squares.slice(); // clone
 
