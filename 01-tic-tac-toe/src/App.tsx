@@ -45,7 +45,6 @@ export default function Board() {
   // TODO: use boolean for the underlying value type
   const [squares, setSquares] = useState(Array(9).fill(null));
 
-  // TODO: `function` vs arrow
   // TODO: something like reduce would be better?
   // TODO: let TypeScript infer their type?
   // TODO: why can I ignore the first argument? (overloaded?)
