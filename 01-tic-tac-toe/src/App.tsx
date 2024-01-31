@@ -103,10 +103,12 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
 
 export default function Game() {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
-  // TODO: use boolean for the underlying value type
+
   // TODO: use enumeartion type
   const [turnOfX, setTurnOfX] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
+
+  // TODO: use boolean for the underlying value type
   const squares = history[history.length - 1];
 
   const handlePlay = (nextSquares) => {
@@ -121,19 +123,20 @@ export default function Game() {
   // Go to game start
   // Go to move #1
   // Go to move #2 ..
-  const historyDisplay = history.map((squares, move) => {
+  const historyDisplay = history.map((squares, iMove) => {
     let description;
-    if (move == 0) {
+    if (iMove == 0) {
       description = "Go to game start";
-    } else if (move > 0) {
-      description = "Go to move #" + move;
+    } else if (iMove > 0) {
+      description = "Go to move #" + iMove;
     } else {
       throw new Error("invalid move?");
     }
 
     return (
-      <li>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+      // each `li` needs to be assigned a unique key so that React can track the change.
+      <li key={iMove}>
+        <button onClick={() => jumpTo(iMove)}>{description}</button>
       </li>
     );
   });
