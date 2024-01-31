@@ -3,12 +3,12 @@ import './App.css'
 
 // TODO: force strict types via `tsconfig`
 
-type Props = {
+type SquareProps = {
   value: string,
   onSquareClick: (i: number) => void,
 }
 
-function Square({ value, onSquareClick }: Props) {
+function Square({ value, onSquareClick }: SquareProps) {
   return (
     <button className="square" onClick={onSquareClick}>{value}</button>
   );
@@ -37,14 +37,13 @@ function calcWinner(squares: string[]) {
   return null;
 }
 
-function Board() {
-  // TODO: use enumeartion type
-  const [turnOfX, setTurnOfX] = useState(true);
+type BoardProps = {
+  turnOfX: Boolean,
+  squares: string[],
+  onPlay: () => void,
+};
 
-  // TODO: `useState` looks like assining a field (..but where? To the global context?)
-  // TODO: use boolean for the underlying value type
-  const [squares, setSquares] = useState(Array(9).fill(null));
-
+function Board({ turnOfX, squares, onPlay }: BoardProps) {
   // TODO: something like reduce would be better?
   // TODO: let TypeScript infer their type?
   // TODO: why can I ignore the first argument? (overloaded?)
@@ -64,8 +63,7 @@ function Board() {
       nexts[i] = "O";
     }
 
-    setSquares(nexts);
-    setTurnOfX(!turnOfX);
+    onPlay(nexts);
   }
 
   // TODO; consider separating it to a functon
@@ -102,10 +100,22 @@ function Board() {
 }
 
 export default function Game() {
+  // TODO: `useState` looks like assining a field (..but where? To the global context?)
+  // TODO: use boolean for the underlying value type
+  // TODO: use enumeartion type
+  const [turnOfX, setTurnOfX] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const squares = history[history.length - 1];
+
+  const handlePlay = (nextSquares) => {
+    setHistory([...history, nextSquares]);
+    setTurnOfX(!turnOfX);
+  }
+
   return (
     <div className="game">
       <div className="game-board">
-        <Board />
+        <Board turnOfX={turnOfX} squares={squares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
         <ol>{/*TODO*/}</ol>
