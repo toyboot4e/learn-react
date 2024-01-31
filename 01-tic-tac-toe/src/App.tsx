@@ -15,7 +15,7 @@ function Square({ value, onSquareClick }: Props) {
 }
 
 // TODO: use map, all, etc.
-function calcWinner(squares: Array<string>) {
+function calcWinner(squares: string[]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
