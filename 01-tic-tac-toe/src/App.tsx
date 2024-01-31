@@ -147,7 +147,7 @@ export default function Game() {
         <Board turnOfX={turnOfX} squares={squares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol>{historyDisplay}</ol>
+        <ol start="0">{historyDisplay}</ol>
       </div>
     </div>
   );
