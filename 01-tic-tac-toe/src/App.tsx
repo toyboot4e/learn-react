@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 
 // TODO: force strict types via `tsconfig`
+// TODO: use `===`?
+// TODO: assert and panic (throw?)
 
 type SquareProps = {
   value: string,
@@ -112,13 +114,37 @@ export default function Game() {
     setTurnOfX(!turnOfX);
   }
 
+  const jumpTo = (nextMove) => {
+    // TODO
+  }
+
+  // Go to game start
+  // Go to move #1
+  // Go to move #2 ..
+  const historyDisplay = history.map((squares, move) => {
+    let description;
+    if (move == 0) {
+      description = "Go to game start";
+    } else if (move > 0) {
+      description = "Go to move #" + move;
+    } else {
+      throw new Error("invalid move?");
+    }
+
+    return (
+      <li>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+
   return (
     <div className="game">
       <div className="game-board">
         <Board turnOfX={turnOfX} squares={squares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol>{/*TODO*/}</ol>
+        <ol>{historyDisplay}</ol>
       </div>
     </div>
   );
