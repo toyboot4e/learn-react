@@ -7,7 +7,7 @@ import './App.css'
 
 type SquareProps = {
   value: string,
-  onSquareClick: (i: number) => void,
+  onSquareClick: () => void,
 }
 
 function Square({ value, onSquareClick }: SquareProps) {
