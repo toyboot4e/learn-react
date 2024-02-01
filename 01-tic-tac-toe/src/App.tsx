@@ -41,6 +41,7 @@ function calcWinner(squares: string[]) {
 }
 
 type BoardProps = {
+  // Primitive `boolean`, not an object `Boolean`
   turnOfX: boolean,
   squares: string[],
   onPlay: (nextSquares: string[]) => void,
@@ -109,21 +110,21 @@ export default function Game() {
   // TODO: use enumeartion type
   const [turnOfX, setTurnOfX] = useState(true);
   const [history, setHistory] = useState<string[][]>([Array(9).fill(null)]);
-  const [currentStep, setCurrentStep] = useState(0);
+  const [nSteps, setNSteps] = useState(0);
 
   // TODO: use boolean for the underlying value type
-  const squares = history[currentStep];
+  const squares = history[nSteps];
 
   const handlePlay = (nextSquares: string[]) => {
-    const nextHistory = [...history.slice(0, currentStep + 1), nextSquares];
+    const nextHistory = [...history.slice(0, nSteps + 1), nextSquares];
     setHistory(nextHistory);
-    setCurrentStep(nextHistory.length - 1);
     setTurnOfX(!turnOfX);
+    setNSteps(nextHistory.length - 1);
   }
 
   const jumpTo = (nextStep: number) => {
-    setCurrentStep(nextStep)
     setTurnOfX(nextStep % 2 === 0);
+    setNSteps(nextStep)
   }
 
   // Go to game start
@@ -154,7 +155,9 @@ export default function Game() {
         <Board turnOfX={turnOfX} squares={squares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol start="0">{historyDisplay}</ol>
+        {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
+            but inside `{}`. */}
+        <ol start={0}>{historyDisplay}</ol>
       </div>
     </div>
   );
