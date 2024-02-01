@@ -41,7 +41,7 @@ function calcWinner(squares: string[]) {
 }
 
 type BoardProps = {
-  turnOfX: Boolean,
+  turnOfX: boolean,
   squares: string[],
   onPlay: (nextSquares: string[]) => void,
 };
