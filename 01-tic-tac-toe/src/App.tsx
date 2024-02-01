@@ -126,7 +126,7 @@ export default function Game() {
   // Go to game start
   // Go to move #1
   // Go to move #2 ..
-  const historyDisplay = history.map((squares, iMove) => {
+  const historyDisplay = history.map((_squares, iMove) => {
     let description;
     if (iMove == 0) {
       description = "Go to game start";
