@@ -4,9 +4,13 @@ This is a playground where I learn about TypeScript and React.
 
 * [WIP] [[./01-tic-tac-toe][01-tic-tac-toe]]
 
-Follows the official: [[https://react.dev/learn/tutorial-tic-tac-toe][Tutorial: Tic-Tac-Toe – React]].
+Follows the official [[https://react.dev/learn/tutorial-tic-tac-toe][Tutorial: Tic-Tac-Toe – React]].
 
 * [TODO] [[./02-learn-emmet][02-learn-emmet]]
 
 Create a simple app where you learn how to use [[https://github.com/emmetio/emmet][emmetio/emmet: The essential toolkit for web-developers]]
+
+* [TODO] 03-real-world
+
+[[https://github.com/gothinkster/realworld][gothinkster/realworld: "The mother of all demo apps"]]
 
