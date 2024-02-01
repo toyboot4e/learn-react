@@ -107,8 +107,6 @@ export default function Game() {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
   // TODO: https://react.dev/reference/react/memo
 
-  // TODO: use enumeartion type
-  const [turnOfX, setTurnOfX] = useState(true);
   const [history, setHistory] = useState<string[][]>([Array(9).fill(null)]);
   const [nSteps, setNSteps] = useState(0);
 
@@ -118,12 +116,10 @@ export default function Game() {
   const handlePlay = (nextSquares: string[]) => {
     const nextHistory = [...history.slice(0, nSteps + 1), nextSquares];
     setHistory(nextHistory);
-    setTurnOfX(!turnOfX);
     setNSteps(nextHistory.length - 1);
   }
 
   const jumpTo = (nextStep: number) => {
-    setTurnOfX(nextStep % 2 === 0);
     setNSteps(nextStep)
   }
 
@@ -152,7 +148,7 @@ export default function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board turnOfX={turnOfX} squares={squares} onPlay={handlePlay} />
+        <Board turnOfX={nSteps % 2 === 0} squares={squares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
         {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
