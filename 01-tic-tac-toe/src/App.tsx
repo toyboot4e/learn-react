@@ -12,6 +12,7 @@ type SquareProps = {
 
 function Square({ value, onSquareClick }: SquareProps) {
   return (
+    // FIXME: "not assignable" after all? (or my linter is wrong)
     <button className="square" onClick={onSquareClick}>{value}</button>
   );
 }
@@ -42,7 +43,7 @@ function calcWinner(squares: string[]) {
 type BoardProps = {
   turnOfX: Boolean,
   squares: string[],
-  onPlay: () => void,
+  onPlay: (nextSquares: string[]) => void,
 };
 
 function Board({ turnOfX, squares, onPlay }: BoardProps) {
@@ -103,6 +104,7 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
 
 export default function Game() {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
+  // TODO: https://react.dev/reference/react/memo
 
   // TODO: use enumeartion type
   const [turnOfX, setTurnOfX] = useState(true);
@@ -111,8 +113,8 @@ export default function Game() {
   // TODO: use boolean for the underlying value type
   const squares = history[history.length - 1];
 
-  const handlePlay = (nextSquares) => {
     setHistory([...history, nextSquares]);
+  const handlePlay = (nextSquares: string[]) => {
     setTurnOfX(!turnOfX);
   }
 
