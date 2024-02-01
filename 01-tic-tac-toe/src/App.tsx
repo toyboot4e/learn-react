@@ -134,7 +134,8 @@ export default function Game() {
     }
 
     return (
-      // each `li` needs to be assigned a unique key so that React can track the change.
+      // Each `li` needs to be assigned a unique `key` so that React can track the change.
+      // Note that the `key` is removed on rendering. Even a database ID would not matter.
       <li key={iMove}>
         <button onClick={() => jumpTo(iMove)}>{description}</button>
       </li>
