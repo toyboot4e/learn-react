@@ -109,17 +109,21 @@ export default function Game() {
   // TODO: use enumeartion type
   const [turnOfX, setTurnOfX] = useState(true);
   const [history, setHistory] = useState<string[][]>([Array(9).fill(null)]);
+  const [currentStep, setCurrentStep] = useState(0);
 
   // TODO: use boolean for the underlying value type
-  const squares = history[history.length - 1];
+  const squares = history[currentStep];
 
-    setHistory([...history, nextSquares]);
   const handlePlay = (nextSquares: string[]) => {
+    const nextHistory = [...history.slice(0, currentStep + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentStep(nextHistory.length - 1);
     setTurnOfX(!turnOfX);
   }
 
-  const jumpTo = (nextMove) => {
-    // TODO
+  const jumpTo = (nextStep: number) => {
+    setCurrentStep(nextStep)
+    setTurnOfX(nextStep % 2 === 0);
   }
 
   // Go to game start
