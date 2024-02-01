@@ -108,7 +108,7 @@ export default function Game() {
 
   // TODO: use enumeartion type
   const [turnOfX, setTurnOfX] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [history, setHistory] = useState<string[][]>([Array(9).fill(null)]);
 
   // TODO: use boolean for the underlying value type
   const squares = history[history.length - 1];
