@@ -115,16 +115,16 @@ export default function Game() {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
   // TODO: https://react.dev/reference/react/memo
 
-  const [history, setHistory] = useState<string[][]>([Array(9).fill(null)]);
+  const [boardHistory, setBoardHistory] = useState<string[][]>([Array(9).fill(null)]);
   const [nSteps, setNSteps] = useState(0);
   const [doRevOrder, setDoRevOrder] = useState(false);
 
   // TODO: use `enum` for the underlying value type
-  const squares = history[nSteps];
+  const squares = boardHistory[nSteps];
 
   const handlePlay = (nextSquares: string[]) => {
-    const nextHistory = [...history.slice(0, nSteps + 1), nextSquares];
-    setHistory(nextHistory);
+    const nextHistory = [...boardHistory.slice(0, nSteps + 1), nextSquares];
+    setBoardHistory(nextHistory);
     setNSteps(nextHistory.length - 1);
   }
 
@@ -135,9 +135,9 @@ export default function Game() {
   // Go to game start
   // Go to move #1
   // Go to move #2 ..
-  const historyDisplay = history.map((_squares, iItem) => {
+  const historyDisplay = boardHistory.map((_squares, iItem) => {
     // reverse index if necesary
-    const iMove = doRevOrder ? iItem : (history.length - 1 - iItem);
+    const iMove = doRevOrder ? iItem : (boardHistory.length - 1 - iItem);
 
     let description;
     if (iMove == nSteps) {
