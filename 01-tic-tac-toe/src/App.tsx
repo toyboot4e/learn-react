@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 
+// TODO: separate "go to game start" from step history
 // TODO: force strict types via `tsconfig`
 // TODO: null, undefined, ===, !==
 // TODO: truthy values
@@ -55,7 +56,7 @@ type BoardProps = {
   // Primitive `boolean`, not an object `Boolean`
   turnOfX: boolean,
   squares: string[],
-  onPlay: (nextSquares: string[]) => void,
+  onPlay: (i: number, nextSquares: string[]) => void,
 };
 
 function Board({ turnOfX, squares, onPlay }: BoardProps) {
@@ -77,7 +78,7 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
       nexts[i] = "O";
     }
 
-    onPlay(nexts);
+    onPlay(i, nexts);
   }
 
   // TODO; consider separating it to a functon
@@ -116,16 +117,18 @@ export default function Game() {
   // TODO: https://react.dev/reference/react/memo
 
   const [boardHistory, setBoardHistory] = useState<string[][]>([Array(9).fill(null)]);
+  const [stepHistory, setStepHistory] = useState<[number, number][]>([]);
   const [nSteps, setNSteps] = useState(0);
   const [doRevOrder, setDoRevOrder] = useState(false);
 
   // TODO: use `enum` for the underlying value type
   const squares = boardHistory[nSteps];
 
-  const handlePlay = (nextSquares: string[]) => {
+  const handlePlay = (i: number, nextSquares: string[]) => {
     const nextHistory = [...boardHistory.slice(0, nSteps + 1), nextSquares];
     setBoardHistory(nextHistory);
     setNSteps(nextHistory.length - 1);
+    setStepHistory([...stepHistory.slice(0, nSteps + 1), [Math.floor(i / 3), i % 3]]);
   }
 
   const jumpTo = (nextStep: number) => {
@@ -137,22 +140,27 @@ export default function Game() {
   // Go to move #2 ..
   const historyDisplay = boardHistory.map((_squares, iItem) => {
     // reverse index if necesary
-    const iMove = doRevOrder ? iItem : (boardHistory.length - 1 - iItem);
+    const iMove = doRevOrder ? (boardHistory.length - 1 - iItem) : iItem;
 
-    let description;
-    if (iMove == nSteps) {
-      description = `You are at move ${iMove}`;
-    } else if (iMove == 0) {
-      description = "Go to game start";
+    // TODO: let me zip anyways..
+    const [y, x] = iMove > 0 ? stepHistory[iMove - 1] : [-1, -1];
+    let posHistory = `(${y}, ${x})`;
+
+    // TODO: no better way to write this rather than to using a local function?
+    let desc;
+    if (iMove == 0) {
+      desc = "Go to game start";
+    } else if (iMove == nSteps) {
+      desc = `You are at move ${iMove} ${posHistory}`;
     } else if (iMove > 0) {
-      description = "Go to move #" + iMove;
+      desc = `Go to move # ${iMove} ${posHistory}`;
     } else {
       throw new Error("invalid move?");
     }
 
     return (
       <li key={iItem} value={iMove}>
-        <button onClick={() => jumpTo(iMove)}>{description}</button>
+        <button onClick={() => jumpTo(iMove)}>{desc}</button>
       </li>
     );
   });
