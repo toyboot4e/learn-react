@@ -122,9 +122,9 @@ export default function Game() {
   // Go to game start
   // Go to move #1
   // Go to move #2 ..
-  const historyDisplay = history.map((_squares, iMove) => {
+  const historyDisplay = history.map((_squares, iItem) => {
     // reverse index if necesary
-    iMove = doRevOrder ? iMove : (history.length - 1 - iMove);
+    const iMove = doRevOrder ? iItem : (history.length - 1 - iItem);
 
     let description;
     if (iMove == nSteps) {
@@ -138,7 +138,7 @@ export default function Game() {
     }
 
     return (
-      <li key={iMove}>
+      <li key={iItem}>
         <button onClick={() => jumpTo(iMove)}>{description}</button>
       </li>
     );
@@ -148,6 +148,7 @@ export default function Game() {
     setDoRevOrder(!doRevOrder);
   }
 
+  // TODO: reveres `li` indices when reversed?
   return (
     <div className="game">
       <div className="game-board">
