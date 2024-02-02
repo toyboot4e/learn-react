@@ -104,6 +104,7 @@ export default function Game() {
 
   const [history, setHistory] = useState<string[][]>([Array(9).fill(null)]);
   const [nSteps, setNSteps] = useState(0);
+  const [doRevOrder, setDoRevOrder] = useState(false);
 
   // TODO: use `enum` for the underlying value type
   const squares = history[nSteps];
@@ -134,13 +135,17 @@ export default function Game() {
     }
 
     return (
-      // Each `li` needs to be assigned a unique `key` so that React can track the change.
-      // Note that the `key` is removed on rendering. Even a database ID would not matter.
-      <li key={iMove}>
-        <button onClick={() => jumpTo(iMove)}>{description}</button>
-      </li>
+      <>
+        <li key={iMove}>
+          <button onClick={() => jumpTo(iMove)}>{description}</button>
+        </li>
+      </>
     );
   });
+
+  const handleReverseOrder = () => {
+    setDoRevOrder(!doRevOrder);
+  }
 
   return (
     <div className="game">
@@ -150,7 +155,10 @@ export default function Game() {
       <div className="game-info">
         {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
             but inside `{}`. */}
-        <ol start={0}>{historyDisplay}</ol>
+        <ol start={0}>
+          {historyDisplay}
+          <button className="status" onClick={handleReverseOrder}>Reverse order</button>
+        </ol>
       </div>
     </div>
   );
