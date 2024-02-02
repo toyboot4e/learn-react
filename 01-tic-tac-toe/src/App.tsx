@@ -138,7 +138,7 @@ export default function Game() {
     }
 
     return (
-      <li key={iItem}>
+      <li key={iItem} value={iMove}>
         <button onClick={() => jumpTo(iMove)}>{description}</button>
       </li>
     );
@@ -157,7 +157,7 @@ export default function Game() {
       <div className="game-info">
         {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
             but inside `{}`. */}
-        <ol start={0}>
+        <ol>
           <button className="status" onClick={handleReverseOrder}>Reverse order</button>
           {historyDisplay}
         </ol>
