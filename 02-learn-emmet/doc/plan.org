@@ -1,0 +1,52 @@
+#+TITLE: Emmet 速習アプリ
+#+LINK: emmet https://emmet.io/
+
+* 概要
+
+[[emmet][Emmet]] の [[https://docs.emmet.io/abbreviations/syntax/][Abbreviations Syntax]] を素早く理解するための web アプリケーションを作成する。
+
+** 機能
+
+1. Abbreviations Syntax の展開結果を確認する
+2. ドリル機能
+3. タイムアタック機能
+
+** 使用技術
+
+*** 確定
+
+- [[https://www.typescriptlang.org/][TypeScript]]
+- [[https://react.dev/][React]]
+
+*** 未定
+
+- [[https://typedoc.org/][TypeDoc]]
+- テスト関係？
+- スタイル
+  - Tailwind CSS?
+  - Stroybook?
+
+* 開発
+
+以下の順でインクリメンタルに開発する。
+
+** 1. Emmet の構文を展開する
+
+[[./plan/emmet-1.png]]
+
+** 2. Emmet の構文を展開し、目標の html と比較する
+
+[[./plan/emmet-2.png]]
+
+** 3. ドリル形式にする
+
+[[./plan/emmet-3.png]]
+
+** 4. html/css のドリルを分離する
+
+[[./plan/emmet-4.png]]
+
+** 5. 寿司打の emmet 版を作成する
+
+[[./plan/emmet-5.png]]
+
