@@ -5,16 +5,27 @@ import './App.css'
 // TODO: null, undefined, ===, !==
 // TODO: truthy values
 // TODO: assert and panic (throw?)
+// TODO: typedoc
 
 type SquareProps = {
   value: string,
+  isFocused: boolean,
   onSquareClick: () => void,
 }
 
-function Square({ value, onSquareClick }: SquareProps) {
-  return (
-    <button className="square" onClick={onSquareClick}>{value}</button>
-  );
+function Square({ value, isFocused, onSquareClick }: SquareProps) {
+  // TODO: use ternary operator and optional className instead
+  if (isFocused) {
+    return (
+      <button className="square" style={{ color: "red" }} onClick={onSquareClick}>
+        {value}
+      </button>
+    );
+  } else {
+    return (
+      <button className="square" onClick={onSquareClick}>{value}</button>
+    );
+  }
 }
 
 // TODO: use map, all, etc.
@@ -89,7 +100,8 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
             {
               [0, 1, 2].map((col) => {
                 var i = row * 3 + col;
-                return (<Square key={i} value={squares[i]} onSquareClick={() => handleClick(i)} />);
+                var isFocused = winningLine?.includes(i) ?? false;
+                return (<Square key={i} value={squares[i]} isFocused={isFocused} onSquareClick={() => handleClick(i)} />);
               })
             }
           </div>)
