@@ -128,10 +128,10 @@ export default function Game() {
   // Go to move #2 ..
   const historyDisplay = history.map((_squares, iMove) => {
     let description;
-    if (iMove == 0) {
-      description = "Go to game start";
-    } else if (iMove == nSteps) {
+    if (iMove == nSteps) {
       description = `You are at move ${iMove}`;
+    } else if (iMove == 0) {
+      description = "Go to game start";
     } else if (iMove > 0) {
       description = "Go to move #" + iMove;
     } else {
