@@ -102,6 +102,7 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
   );
 }
 
+// TODO: what is the return type. tsc should make it a compile error.
 export default function Game() {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
   // TODO: https://react.dev/reference/react/memo
@@ -109,7 +110,7 @@ export default function Game() {
   const [history, setHistory] = useState<string[][]>([Array(9).fill(null)]);
   const [nSteps, setNSteps] = useState(0);
 
-  // TODO: use boolean for the underlying value type
+  // TODO: use `enum` for the underlying value type
   const squares = history[nSteps];
 
   const handlePlay = (nextSquares: string[]) => {
@@ -154,7 +155,9 @@ export default function Game() {
       <div className="game-info">
         {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
             but inside `{}`. */}
-        <ol start={0}>{historyDisplay}</ol>
+        <ol start={0}>
+          {historyDisplay}
+        </ol>
       </div>
     </div>
   );
