@@ -155,9 +155,7 @@ export default function Game() {
       <div className="game-info">
         {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
             but inside `{}`. */}
-        <ol start={0}>
-          {historyDisplay}
-        </ol>
+        <ol start={0}>{historyDisplay}</ol>
       </div>
     </div>
   );
