@@ -2,7 +2,8 @@ import { useState } from 'react'
 import './App.css'
 
 // TODO: force strict types via `tsconfig`
-// TODO: use `===`?
+// TODO: null, undefined, ===, !==
+// TODO: truthy values
 // TODO: assert and panic (throw?)
 
 type SquareProps = {
@@ -17,7 +18,7 @@ function Square({ value, onSquareClick }: SquareProps) {
 }
 
 // TODO: use map, all, etc.
-function calcWinner(squares: string[]) {
+function findWin(squares: string[]): number[] | null {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -32,7 +33,7 @@ function calcWinner(squares: string[]) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return [a, b, c];
     }
   }
 
@@ -52,8 +53,7 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
   // TODO: why can I ignore the first argument? (overloaded?)
   const handleClick = (i: number) => {
     // TODO: prefer explicit comparison to `null` or not?
-    // TODO: null, undefined, ===, !==
-    if (squares[i] || calcWinner(squares)) {
+    if (squares[i] || findWin(squares) !== null) {
       return;
     }
 
@@ -70,9 +70,10 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
   }
 
   // TODO; consider separating it to a functon
-  const winner = calcWinner(squares);
+  const winningLine = findWin(squares);
   let status;
-  if (winner) {
+  if (winningLine) {
+    const winner = (!turnOfX ? "X" : "O");
     status = "Winner: " + winner;
   } else {
     status = "Next player: " + (turnOfX ? "X" : "O");
