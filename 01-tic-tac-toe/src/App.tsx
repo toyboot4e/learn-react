@@ -84,11 +84,11 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
       <div className="status">{status}</div>
       {
         [0, 1, 2].map((row) =>
-          <div className="board-row">
+          <div key={row} className="board-row">
             {
               [0, 1, 2].map((col) => {
                 var i = row * 3 + col;
-                return (<Square value={squares[i]} onSquareClick={() => handleClick(i)} />);
+                return (<Square key={i} value={squares[i]} onSquareClick={() => handleClick(i)} />);
               })
             }
           </div>)
