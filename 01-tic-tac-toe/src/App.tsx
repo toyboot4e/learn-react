@@ -12,7 +12,6 @@ type SquareProps = {
 
 function Square({ value, onSquareClick }: SquareProps) {
   return (
-    // FIXME: "not assignable" after all? (or my linter is wrong)
     <button className="square" onClick={onSquareClick}>{value}</button>
   );
 }
@@ -130,6 +129,8 @@ export default function Game() {
     let description;
     if (iMove == 0) {
       description = "Go to game start";
+    } else if (iMove == nSteps) {
+      description = `You are at move ${iMove}`;
     } else if (iMove > 0) {
       description = "Go to move #" + iMove;
     } else {
