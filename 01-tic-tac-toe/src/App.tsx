@@ -135,11 +135,9 @@ export default function Game() {
     }
 
     return (
-      <>
-        <li key={iMove}>
-          <button onClick={() => jumpTo(iMove)}>{description}</button>
-        </li>
-      </>
+      <li key={iMove}>
+        <button onClick={() => jumpTo(iMove)}>{description}</button>
+      </li>
     );
   });
 
