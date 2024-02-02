@@ -123,6 +123,9 @@ export default function Game() {
   // Go to move #1
   // Go to move #2 ..
   const historyDisplay = history.map((_squares, iMove) => {
+    // reverse index if necesary
+    iMove = doRevOrder ? iMove : (history.length - 1 - iMove);
+
     let description;
     if (iMove == nSteps) {
       description = `You are at move ${iMove}`;
@@ -154,8 +157,8 @@ export default function Game() {
         {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
             but inside `{}`. */}
         <ol start={0}>
-          {historyDisplay}
           <button className="status" onClick={handleReverseOrder}>Reverse order</button>
+          {historyDisplay}
         </ol>
       </div>
     </div>
