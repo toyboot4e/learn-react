@@ -2,7 +2,7 @@
 
 This is a playground where I learn about TypeScript and React.
 
-* [WIP] [[./01-tic-tac-toe][01-tic-tac-toe]]
+* [DONE] [[./01-tic-tac-toe][01-tic-tac-toe]]
 
 Follows the official [[https://react.dev/learn/tutorial-tic-tac-toe][Tutorial: Tic-Tac-Toe – React]].
 
