@@ -56,10 +56,10 @@ type BoardProps = {
   // Primitive `boolean`, not an object `Boolean`
   turnOfX: boolean,
   squares: string[],
-  onPlay: (i: number, nextSquares: string[]) => void,
+  onStep: (i: number, nextSquares: string[]) => void,
 };
 
-function Board({ turnOfX, squares, onPlay }: BoardProps) {
+function Board({ turnOfX, squares, onStep: onStep }: BoardProps) {
   // TODO: something like reduce would be better?
   // TODO: let TypeScript infer their type?
   // TODO: why can I ignore the first argument? (overloaded?)
@@ -78,7 +78,7 @@ function Board({ turnOfX, squares, onPlay }: BoardProps) {
       nexts[i] = "O";
     }
 
-    onPlay(i, nexts);
+    onStep(i, nexts);
   }
 
   // TODO; consider separating it to a functon
@@ -124,7 +124,7 @@ export default function Game() {
   // TODO: use `enum` for the underlying value type
   const squares = boardHistory[nSteps];
 
-  const handlePlay = (i: number, nextSquares: string[]) => {
+  const handleStep = (i: number, nextSquares: string[]) => {
     const nextHistory = [...boardHistory.slice(0, nSteps + 1), nextSquares];
     setBoardHistory(nextHistory);
     setNSteps(nextHistory.length - 1);
@@ -172,7 +172,7 @@ export default function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board turnOfX={nSteps % 2 === 0} squares={squares} onPlay={handlePlay} />
+        <Board turnOfX={nSteps % 2 === 0} squares={squares} onStep={handleStep} />
       </div>
       <div className="game-info">
         {/* In HTML, numerical values are treated as strings. In React, we can write numbers,
