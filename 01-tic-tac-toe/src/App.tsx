@@ -148,7 +148,6 @@ export default function Game() {
     setDoRevOrder(!doRevOrder);
   }
 
-  // TODO: reveres `li` indices when reversed?
   return (
     <div className="game">
       <div className="game-board">
