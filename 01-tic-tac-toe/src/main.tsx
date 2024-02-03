@@ -1,3 +1,6 @@
+export { default as Game } from './App.tsx';
+export * from './App.tsx';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';

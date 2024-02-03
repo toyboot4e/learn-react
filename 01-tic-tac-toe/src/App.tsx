@@ -8,13 +8,14 @@ import './App.css';
 // TODO: assert and panic (throw?)
 // TODO: typedoc
 
-type SquareProps = {
+// Properties of [[Square]].
+export type SquareProps = {
   value: string;
   isFocused: boolean;
   onSquareClick: () => void;
 };
 
-function Square({ value, isFocused, onSquareClick }: SquareProps) {
+export function Square({ value, isFocused, onSquareClick }: SquareProps) {
   // TODO: use ternary operator and optional className instead
   if (isFocused) {
     return (
