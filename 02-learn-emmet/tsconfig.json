@@ -22,7 +22,10 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "noImplicitReturns": true,
-    "noImplicitOverride": true
+    "noImplicitOverride": true,
+
+    /* Fix for importing Emmet */
+    "resolvePackageJsonExports": false
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
