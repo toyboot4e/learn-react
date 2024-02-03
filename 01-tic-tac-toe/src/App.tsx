@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import './App.css';
 
 // TODO: separate "go to game start" from step history
@@ -7,15 +7,16 @@ import './App.css';
 // TODO: truthy values
 // TODO: assert and panic (throw?)
 // TODO: typedoc
+// TODO: fix type annoations
 
-// Properties of [[Square]].
+/** Properties of {@link Square}. */
 export type SquareProps = {
   value: string;
   isFocused: boolean;
   onSquareClick: () => void;
 };
 
-export function Square({ value, isFocused, onSquareClick }: SquareProps) {
+const Square: FC<SquareProps> = ({ value, isFocused, onSquareClick }) => {
   // TODO: use ternary operator and optional className instead
   if (isFocused) {
     return (
@@ -34,7 +35,7 @@ export function Square({ value, isFocused, onSquareClick }: SquareProps) {
       </button>
     );
   }
-}
+};
 
 // TODO: use map, all, etc.
 function findWin(squares: string[]): number[] | null {
