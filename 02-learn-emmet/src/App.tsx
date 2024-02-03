@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import * as emmet from 'emmet';
+import expand from 'emmet';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +13,7 @@ function App() {
           count is {count}
         </button>
         <p style={{ whiteSpace: "pre_line" }}>
-          {emmet.expand('div>ol>li+li+li')}
+          {expand('div>ol>li+li+li')}
         </p>
       </div>
       <p className="read-the-docs">
