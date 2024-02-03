@@ -123,7 +123,7 @@ function Board({ turnOfX, squares, onStep: onStep }: BoardProps) {
 }
 
 // TODO: what is the return type. tsc should make it a compile error.
-export default function Game() {
+export function Game() {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
   // TODO: https://react.dev/reference/react/memo
 
