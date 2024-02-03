@@ -12,6 +12,8 @@ Follow the official [[https://react.dev/learn/tutorial-tic-tac-toe][Tutorial: Ti
 
 Create a simple app where you learn how to use [[https://github.com/emmetio/emmet][emmetio/emmet: The essential toolkit for web-developers]].
 
+Initial development plan can be seen here: [[./02-learn-emmet/doc/plan.org]]
+
 * [TODO] 03-real-world
 
 [[https://github.com/gothinkster/realworld][gothinkster/realworld: "The mother of all demo apps"]]
