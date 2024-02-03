@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import * as emmet from 'emmet';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,8 +12,8 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+        <p style={{ whiteSpace: "pre_line" }}>
+          {emmet.expand('div>ol>li+li+li')}
         </p>
       </div>
       <p className="read-the-docs">
