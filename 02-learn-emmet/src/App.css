@@ -1,7 +1,14 @@
-html,
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   width: 100%;
   height: 100%;
+  margin: 0;
+  /* TODO: Why `flex` is required to not overflow the screen width? */
+  display: flex;
 }
 
 #root {
@@ -17,7 +24,7 @@ body {
 
 main {
   width: 100%;
-  flex: 1;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -39,18 +46,16 @@ main {
 }
 
 .emmet-input {
-  /* The input area and code should have the same width */
+  /* The input area and the code should have the same width */
   box-sizing: border-box;
   width: 100%;
   resize: none;
 }
 
 .emmet-code {
-  /* The input area and code should have the same width */
+  /* The input area and the code should have the same width */
   box-sizing: border-box;
   width: 100%;
-  /* Fill the remaining space */
-  flex: 1;
 }
 
 .emmet-ac {
