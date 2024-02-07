@@ -77,7 +77,7 @@ export function App() {
   return (
     <>
       <header>
-        <h1>Emmet 速習</h1>
+        <h1>Emmet 道場</h1>
       </header>
       <main>
         <div className="emmet-layout">
