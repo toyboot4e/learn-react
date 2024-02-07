@@ -115,6 +115,7 @@ export const App = (): JSX.Element => {
               className="emmet-input"
               placeholder={placeholder}
               onChange={handleTextAreaChange}
+              autoFocus={true}
             >
               {input}
             </textarea>
