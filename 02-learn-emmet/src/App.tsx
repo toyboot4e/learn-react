@@ -82,7 +82,9 @@ export const App = (): JSX.Element => {
         <h1>Emmet 道場</h1>
       </header>
       <main>
-        <p className="emmet-problem-title">{problem.title}</p>
+        <p className="emmet-problem-title">
+          {`${String(problemNo + 1).padStart(2, '0')} - ${problem.title}`}
+        </p>
         <div className="emmet-layout">
           <textarea
             rows={1}

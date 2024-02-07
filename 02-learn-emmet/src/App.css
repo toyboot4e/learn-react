@@ -38,7 +38,8 @@ main {
 
 .emmet-problem-title {
   font-size: 32px;
-  margin: 0.2rem 0px 0.2rem 0px;
+  /* TODO: is top margin zero good idea? */
+  margin: 0 0 0.2rem 0;
   padding: 0;
 }
 
