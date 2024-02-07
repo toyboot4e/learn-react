@@ -97,7 +97,12 @@ export const App = (): JSX.Element => {
   };
 
   // TODO: do not hard code className. maybe use storybook or something. or use constants?
-  // TODO: do not hard code className. maybe use storybook or something. or use constants?
+  // TODO: do I have to nest `div`s to make up such a layout with flex?
+  //     --------------
+  //
+  //     ----+---------
+  //         |
+  //     ----+---------
   return (
     <>
       <header>
