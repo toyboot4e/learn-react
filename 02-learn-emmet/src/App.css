@@ -22,15 +22,31 @@ body {
   flex-direction: column;
 }
 
+header > h1 {
+  margin: 0.2rem 0px 0.2rem 0px;
+  padding: 0;
+}
+
 main {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.emmet-problem-title {
+  font-size: 32px;
+  margin: 0.2rem 0px 0.2rem 0px;
+  padding: 0;
 }
 
 .emmet-layout {
   width: 100%;
-  height: 100%;
+
+  /* FIXME: This is too big. */
+  flex: 1;
 
   display: grid;
   grid-template-columns: 1fr 1fr;

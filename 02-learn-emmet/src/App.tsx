@@ -35,6 +35,7 @@ export const Acception = ({ isAccepted }: AcceptionProps): JSX.Element => {
   if (isAccepted) {
     // TODO: how to position
     // TODO: animation
+    // TODO: never wrap, but fix in the screen, but not too big
     return (
       <div className="emmet-ac">
         <p className="emmet-ac-text">✓ Accepted</p>
@@ -81,6 +82,7 @@ export const App = (): JSX.Element => {
         <h1>Emmet 道場</h1>
       </header>
       <main>
+        <p className="emmet-problem-title">{problem.title}</p>
         <div className="emmet-layout">
           <textarea
             rows={1}
