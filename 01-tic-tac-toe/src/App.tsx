@@ -114,8 +114,8 @@ const Board = ({
       {[0, 1, 2].map((row) => (
         <div key={row} className="board-row">
           {[0, 1, 2].map((col) => {
-            var i = row * 3 + col;
-            var isFocused = winningLine?.includes(i) ?? false;
+            const i = row * 3 + col;
+            const isFocused = winningLine?.includes(i) ?? false;
             return (
               <Square
                 key={i}
@@ -131,7 +131,7 @@ const Board = ({
   );
 };
 
-const Game = (): React.JSX.Element => {
+export const Game = (): React.JSX.Element => {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
   // TODO: https://react.dev/reference/react/memo
 
@@ -168,7 +168,7 @@ const Game = (): React.JSX.Element => {
 
     // TODO: let me zip anyways..
     const [y, x] = iMove > 0 ? stepHistory[iMove - 1] : [-1, -1];
-    let posHistory = `(${y}, ${x})`;
+    const posHistory = `(${y}, ${x})`;
 
     // TODO: no better way to write this rather than to using a local function?
     let desc;
