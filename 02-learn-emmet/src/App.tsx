@@ -1,7 +1,8 @@
 import './App.css';
 import * as emmet from 'emmet';
 import { default as expand } from 'emmet';
-import { FC, useState } from 'react';
+import { useState, JSX } from 'react';
+import { Problem, htmlProblems } from './Problem.ts';
 
 // TODO: only dev-dependency is enough?
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -13,7 +14,7 @@ export type CodeBlockProps = {
   code: string;
 };
 
-export const CodeBlock: FC<CodeBlockProps> = ({ language, code }) => {
+export const CodeBlock = ({ language, code }: CodeBlockProps): JSX.Element => {
   // TODO: how to extract `className`?
   return (
     <SyntaxHighlighter
@@ -30,7 +31,7 @@ export type AcceptionProps = {
   isAccepted: boolean;
 };
 
-export const Acception: FC<AcceptionProps> = ({ isAccepted }) => {
+export const Acception = ({ isAccepted }: AcceptionProps): JSX.Element => {
   if (isAccepted) {
     // TODO: how to position
     // TODO: animation
@@ -44,26 +45,26 @@ export const Acception: FC<AcceptionProps> = ({ isAccepted }) => {
   }
 };
 
-// /** Properties of {@link Square}. */
-// export type CodeBlockProps = {
-//   value: string;
-//   isFocused: boolean;
-//   onSquareClick: () => void;
-// };
-
-// constants
-const placeholder = 'type abbreviaton syntax';
-
-// TODO: Type annotation for this function?
-export function App() {
-  const [lang, setLang] = useState('html');
+export const App = (): JSX.Element => {
+  const lang = 'html';
+  const placeholder = 'type abbreviaton syntax';
 
   // TODO: use `useReducer`
-  const [expectation, setExpectation] = useState('div>ol>li*3');
-  const expandedExpectation = expand(expectation);
+  const [problemNo, setProblemNo] = useState(0);
+  const problem = htmlProblems[problemNo];
 
   const [input, setCode] = useState('');
   const expandedInput = expand(input);
+
+  if (problem === undefined) {
+    alert('Invalid problem no?');
+    // FIXME: type error
+    // TODO: set the problem no to zero, but forbidding infinite loop
+    return null;
+  }
+
+  const expectation = problem.expected;
+  const expandedExpectation = expand(expectation);
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     // strip newline characters
@@ -99,4 +100,4 @@ export function App() {
       </main>
     </>
   );
-}
+};
