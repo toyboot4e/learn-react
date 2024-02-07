@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 // TODO: separate "go to game start" from step history
@@ -16,7 +16,11 @@ export type SquareProps = {
   onSquareClick: () => void;
 };
 
-const Square: FC<SquareProps> = ({ value, isFocused, onSquareClick }) => {
+const Square = ({
+  value,
+  isFocused,
+  onSquareClick,
+}: SquareProps): React.JSX.Element => {
   // TODO: use ternary operator and optional className instead
   if (isFocused) {
     return (
@@ -38,7 +42,7 @@ const Square: FC<SquareProps> = ({ value, isFocused, onSquareClick }) => {
 };
 
 // TODO: use map, all, etc.
-function findWin(squares: string[]): number[] | null {
+const findWin = (squares: string[]): number[] | null => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -58,7 +62,7 @@ function findWin(squares: string[]): number[] | null {
   }
 
   return null;
-}
+};
 
 type BoardProps = {
   // Primitive `boolean`, not an object `Boolean`
@@ -67,7 +71,11 @@ type BoardProps = {
   onStep: (i: number, nextSquares: string[]) => void;
 };
 
-function Board({ turnOfX, squares, onStep: onStep }: BoardProps) {
+const Board = ({
+  turnOfX,
+  squares,
+  onStep: onStep,
+}: BoardProps): React.JSX.Element => {
   // TODO: something like reduce would be better?
   // TODO: let TypeScript infer their type?
   // TODO: why can I ignore the first argument? (overloaded?)
@@ -121,10 +129,9 @@ function Board({ turnOfX, squares, onStep: onStep }: BoardProps) {
       ))}
     </>
   );
-}
+};
 
-// TODO: what is the return type. tsc should make it a compile error.
-export function Game() {
+const Game = (): React.JSX.Element => {
   // TODO: `useState` looks like assining a field (..but where? To the global context?)
   // TODO: https://react.dev/reference/react/memo
 
@@ -207,4 +214,4 @@ export function Game() {
       </div>
     </div>
   );
-}
+};
