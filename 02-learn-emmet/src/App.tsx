@@ -81,22 +81,18 @@ export function App() {
       </header>
       <main>
         <div className="emmet-layout">
-          <div className="emmet-column">
-            <textarea
-              rows={1}
-              className="emmet-input"
-              placeholder={placeholder}
-              onChange={handleTextAreaChange}
-            >
-              {input}
-            </textarea>
-            <CodeBlock language={lang} code={expandedInput} />
-          </div>
+          <textarea
+            rows={1}
+            className="emmet-input"
+            placeholder={placeholder}
+            onChange={handleTextAreaChange}
+          >
+            {input}
+          </textarea>
+          <p>Expected</p>
 
-          <div className="emmet-column">
-            <p>Expected</p>
-            <CodeBlock language={lang} code={expandedExpectation} />
-          </div>
+          <CodeBlock language={lang} code={expandedInput} />
+          <CodeBlock language={lang} code={expandedExpectation} />
         </div>
 
         <Acception isAccepted={expandedInput === expandedExpectation} />
