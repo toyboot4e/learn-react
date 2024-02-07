@@ -14,12 +14,16 @@ body {
 #root {
   width: 100%;
   height: 100%;
-  margin: 0 2rem 0 2rem;
+  margin: 0 0rem 0 0rem;
   padding: 0;
   text-align: center;
 
   display: flex;
   flex-direction: column;
+}
+
+header {
+  background: yellow;
 }
 
 header > h1 {
@@ -33,7 +37,7 @@ main {
   overflow-y: auto;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .emmet-problem-title {
@@ -43,8 +47,23 @@ main {
   padding: 0;
 }
 
-.emmet-layout {
+/* TODO: CSS naming rule, such as this:
+   https://qiita.com/laineus/items/31108ce10259ef996c8c */
+.emmet-container {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.emmet-sidebar {
+  background: green;
+  padding: 0px 1rem -0px 1rem;
+  margin: 0;
+}
+
+.emmet-layout {
+  margin: 0px 2rem 0px 24px;
 
   /* FIXME: This is too big. */
   flex: 1;
@@ -56,6 +75,7 @@ main {
   grid-row-gap: 0px;
 }
 
+/* TODO: proper internal name for "Expected" */
 /* FIXME: set #id or .class */
 /* FIXME: #id vs .class */
 .emmet-layout > p {
@@ -63,16 +83,10 @@ main {
 }
 
 .emmet-input {
-  /* The input area and the code should have the same width */
-  box-sizing: border-box;
-  width: 100%;
   resize: none;
 }
 
 .emmet-code {
-  /* The input area and the code should have the same width */
-  box-sizing: border-box;
-  width: 100%;
 }
 
 .emmet-ac {

@@ -11,6 +11,6 @@ export class Problem {
 // TODO: Extract the data and load file at compile time.
 export const htmlProblems: Problem[] = [
   new Problem('Bang', '!'),
-  new Problem('Bang', 'div>ol>li*3'),
-  new Problem('Bang', 'nav>ol>li*3'),
+  new Problem('List', 'div>ol>li*3'),
+  new Problem('Nav', 'nav>ol>li*3'),
 ];

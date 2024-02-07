@@ -46,6 +46,27 @@ export const Acception = ({ isAccepted }: AcceptionProps): JSX.Element => {
   }
 };
 
+/** Properties of {@link Sidebar}. */
+export type SidebarProps = {
+  problems: Problem[];
+  currentProblem: number;
+};
+
+// TODO: collapsible
+export const Sidebar = ({
+  problems,
+  currentProblem,
+}: SidebarProps): JSX.Element => {
+  // TODO: highlight current problem
+  return (
+    <div className="emmet-sidebar">
+      {problems.map((p, i) => (
+        <p>{`${String(i + 1).padStart(2, '0')} - ${p.title}`}</p>
+      ))}
+    </div>
+  );
+};
+
 export const App = (): JSX.Element => {
   const lang = 'html';
   const placeholder = 'type abbreviaton syntax';
@@ -75,29 +96,33 @@ export const App = (): JSX.Element => {
     setCode(e.target.value);
   };
 
-  // TODO: do not hard coding className. maybe use storybook.
+  // TODO: do not hard code className. maybe use storybook or something. or use constants?
+  // TODO: do not hard code className. maybe use storybook or something. or use constants?
   return (
     <>
       <header>
         <h1>Emmet 道場</h1>
       </header>
       <main>
-        <p className="emmet-problem-title">
-          {`${String(problemNo + 1).padStart(2, '0')} - ${problem.title}`}
-        </p>
-        <div className="emmet-layout">
-          <textarea
-            rows={1}
-            className="emmet-input"
-            placeholder={placeholder}
-            onChange={handleTextAreaChange}
-          >
-            {input}
-          </textarea>
-          <p>Expected</p>
+        <Sidebar problems={htmlProblems} currentProblem={problemNo} />
+        <div className="emmet-container">
+          <p className="emmet-problem-title">
+            {`${String(problemNo + 1).padStart(2, '0')} - ${problem.title}`}
+          </p>
+          <div className="emmet-layout">
+            <textarea
+              rows={1}
+              className="emmet-input"
+              placeholder={placeholder}
+              onChange={handleTextAreaChange}
+            >
+              {input}
+            </textarea>
+            <p>Expected</p>
 
-          <CodeBlock language={lang} code={expandedInput} />
-          <CodeBlock language={lang} code={expandedExpectation} />
+            <CodeBlock language={lang} code={expandedInput} />
+            <CodeBlock language={lang} code={expandedExpectation} />
+          </div>
         </div>
 
         <Acception isAccepted={expandedInput === expandedExpectation} />
