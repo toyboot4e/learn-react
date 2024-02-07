@@ -57,9 +57,22 @@ main {
 }
 
 .emmet-sidebar {
+  width: 120px;
   background: green;
-  padding: 0px 1rem -0px 1rem;
+  /* FIXME: proper way to make up same space between the elements and the sidebar */
+  padding: 6px 6px 0px 6px;
   margin: 0;
+  text-align: left;
+}
+
+.emmet-sidebar > p {
+  padding: 6px 0px 6px 0px;
+  margin: 0;
+}
+
+.emmet-sidebar-number {
+  font-weight: bold;
+  padding-right: 8px;
 }
 
 .emmet-layout {

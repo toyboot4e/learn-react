@@ -61,7 +61,12 @@ export const Sidebar = ({
   return (
     <div className="emmet-sidebar">
       {problems.map((p, i) => (
-        <p>{`${String(i + 1).padStart(2, '0')} - ${p.title}`}</p>
+        <p>
+          <span className="emmet-sidebar-number">
+            {`${String(i + 1).padStart(2, '0')}`}
+          </span>
+          {`${p.title}`}
+        </p>
       ))}
     </div>
   );
