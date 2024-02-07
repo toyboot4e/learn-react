@@ -89,6 +89,7 @@ main {
 .emmet-code {
 }
 
+/* FIXME: do not prevent from clicking the contents in the back */
 .emmet-ac {
   /* center */
   position: fixed;
