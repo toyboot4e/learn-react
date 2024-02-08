@@ -34,10 +34,7 @@ header > h1 {
 main {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-
   display: flex;
-  flex-direction: row;
 }
 
 .emmet-problem-title {
@@ -51,9 +48,6 @@ main {
    https://qiita.com/laineus/items/31108ce10259ef996c8c */
 .emmet-container {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .emmet-sidebar {
@@ -77,22 +71,17 @@ main {
 
 .emmet-layout {
   margin: 0px 2rem 0px 24px;
-
-  /* FIXME: This is too big. */
-  flex: 1;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: max-content auto;
-  grid-column-gap: 24px;
-  grid-row-gap: 0px;
+  display: flex;
+  gap: 8px;
 }
 
-/* TODO: proper internal name for "Expected" */
-/* FIXME: set #id or .class */
-/* FIXME: #id vs .class */
-.emmet-layout > p {
-  margin: 0;
+.emmet-element {
+  width: 100%;
+}
+
+.emmet-element > p {
+  margin: 10px 0;
+  height: 24px;
 }
 
 .emmet-input {
@@ -100,6 +89,7 @@ main {
 }
 
 .emmet-code {
+  height: calc(100vh - 200px);
 }
 
 /* FIXME: do not prevent from clicking the contents in the back */
