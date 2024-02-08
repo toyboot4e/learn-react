@@ -77,7 +77,7 @@ export const App = (): JSX.Element => {
   const placeholder = 'type abbreviaton syntax';
 
   // TODO: use `useReducer`
-  const [problemNo, setProblemNo] = useState(0);
+  const [problemNo, setProblemNo] = useState(1);
   const problem = htmlProblems[problemNo];
 
   const [input, setCode] = useState('');
@@ -114,29 +114,34 @@ export const App = (): JSX.Element => {
         <h1>Emmet 道場</h1>
       </header>
       <main>
-        <Sidebar problems={htmlProblems} currentProblem={problemNo} />
+        <Sidebar problems={htmlProblems} currentProblem={problemNo}/>
         <div className="emmet-container">
           <p className="emmet-problem-title">
             {`${String(problemNo + 1).padStart(2, '0')} - ${problem.title}`}
           </p>
           <div className="emmet-layout">
-            <textarea
-              rows={1}
-              className="emmet-input"
-              placeholder={placeholder}
-              onChange={handleTextAreaChange}
-              autoFocus={true}
-            >
-              {input}
-            </textarea>
-            <p>Expected</p>
-
-            <CodeBlock language={lang} code={expandedInput} />
-            <CodeBlock language={lang} code={expandedExpectation} />
+            <div className="emmet-element">
+              <p>
+                <textarea
+                  rows={1}
+                  className="emmet-input"
+                  placeholder={placeholder}
+                  onChange={handleTextAreaChange}
+                  autoFocus={true}
+                >
+                  {input}
+                </textarea>
+              </p>
+              <CodeBlock language={lang} code={expandedInput}/>
+            </div>
+            <div className="emmet-element">
+              <p>Expected</p>
+              <CodeBlock language={lang} code={expandedExpectation}/>
+            </div>
           </div>
         </div>
 
-        <Acception isAccepted={expandedInput === expandedExpectation} />
+        <Acception isAccepted={expandedInput === expandedExpectation}/>
       </main>
     </>
   );
