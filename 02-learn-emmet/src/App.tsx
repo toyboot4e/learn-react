@@ -114,7 +114,7 @@ export const App = (): JSX.Element => {
         <h1>Emmet 道場</h1>
       </header>
       <main>
-        <Sidebar problems={htmlProblems} currentProblem={problemNo}/>
+        <Sidebar problems={htmlProblems} currentProblem={problemNo} />
         <div className="emmet-container">
           <p className="emmet-problem-title">
             {`${String(problemNo + 1).padStart(2, '0')} - ${problem.title}`}
@@ -132,16 +132,16 @@ export const App = (): JSX.Element => {
                   {input}
                 </textarea>
               </p>
-              <CodeBlock language={lang} code={expandedInput}/>
+              <CodeBlock language={lang} code={expandedInput} />
             </div>
             <div className="emmet-element">
               <p>Expected</p>
-              <CodeBlock language={lang} code={expandedExpectation}/>
+              <CodeBlock language={lang} code={expandedExpectation} />
             </div>
           </div>
         </div>
 
-        <Acception isAccepted={expandedInput === expandedExpectation}/>
+        <Acception isAccepted={expandedInput === expandedExpectation} />
       </main>
     </>
   );
