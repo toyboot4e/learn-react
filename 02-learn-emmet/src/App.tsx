@@ -123,11 +123,12 @@ export const App = (): JSX.Element => {
             {`${String(problemNo + 1).padStart(2, '0')} - ${problem.title}`}
           </p>
           <div className="emmet-layout">
+            {/* left element: user input */}
             <div className="emmet-element">
-              <p>
+              <p className="emmet-element-title">
                 <textarea
                   rows={1}
-                  className="emmet-input"
+                  className="emmet-element-input"
                   placeholder={placeholder}
                   onChange={handleTextAreaChange}
                   autoFocus={true}
@@ -137,8 +138,9 @@ export const App = (): JSX.Element => {
               </p>
               <CodeBlock language={lang} code={expandedInput} />
             </div>
+            {/* right element: expected code*/}
             <div className="emmet-element">
-              <p>Expected</p>
+              <p className="emmet-element-title">Expected</p>
               <CodeBlock language={lang} code={expandedExpectation} />
             </div>
           </div>
