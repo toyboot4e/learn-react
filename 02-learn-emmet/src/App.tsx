@@ -36,7 +36,6 @@ export const Acception = ({
   isAccepted,
 }: AcceptionProps): JSX.Element | null => {
   if (isAccepted) {
-    // TODO: how to position
     // TODO: animation
     // TODO: never wrap, but fix in the screen, but not too big
     return (
@@ -52,6 +51,7 @@ export const Acception = ({
 /** Properties of {@link Sidebar}. */
 export type SidebarProps = {
   problems: Problem[];
+  /** Zero-based. */
   currentProblem: number;
 };
 
@@ -60,15 +60,15 @@ export const Sidebar = ({
   problems,
   currentProblem,
 }: SidebarProps): JSX.Element => {
-  // TODO: highlight current problem
+  // TODO: <p> should full fill the row
   return (
     <div className="emmet-sidebar">
       {problems.map((p, i) => (
-        <p>
+        <p className={i == currentProblem ? 'emmet-sidebar-current' : ''}>
           <span className="emmet-sidebar-number">
             {`${String(i + 1).padStart(2, '0')}`}
           </span>
-          {`${p.title}`}
+          {p.title}
         </p>
       ))}
     </div>

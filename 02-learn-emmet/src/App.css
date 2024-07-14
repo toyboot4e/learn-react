@@ -69,6 +69,11 @@ main {
   padding-right: 8px;
 }
 
+.emmet-sidebar-current {
+  font-weight: bold;
+  background-color: yellow;
+}
+
 .emmet-layout {
   margin: 0px 2rem 0px 24px;
   display: flex;
