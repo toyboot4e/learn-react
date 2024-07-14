@@ -31,7 +31,10 @@ export type AcceptionProps = {
   isAccepted: boolean;
 };
 
-export const Acception = ({ isAccepted }: AcceptionProps): JSX.Element => {
+/** The "Accepted" popup. */
+export const Acception = ({
+  isAccepted,
+}: AcceptionProps): JSX.Element | null => {
   if (isAccepted) {
     // TODO: how to position
     // TODO: animation

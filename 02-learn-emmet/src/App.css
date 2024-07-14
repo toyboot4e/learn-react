@@ -101,6 +101,9 @@ main {
   transform: translate(-50%, -50%);
   text-align: center;
 
+  /* not clickable and content below can be clicked */
+  pointer-events: none;
+
   color: green;
   font-size: 128px;
 }
