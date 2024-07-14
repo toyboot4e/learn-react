@@ -8,6 +8,8 @@ import { Problem, htmlProblems } from './Problem.ts';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
+// TODO: Separate files per component? Or easier layout.
+
 /** Properties of {@link CodeBlock}. */
 export type CodeBlockProps = {
   language: string;
@@ -15,10 +17,10 @@ export type CodeBlockProps = {
 };
 
 export const CodeBlock = ({ language, code }: CodeBlockProps): JSX.Element => {
-  // TODO: how to extract `className`?
+  // TODO: how to extract `className`? (as variables?)
   return (
     <SyntaxHighlighter
-      className="emmet-code"
+      className="emmet-layout-element-code"
       style={okaidia}
       language={language}
       children={String(code)}
@@ -106,11 +108,6 @@ export const App = (): JSX.Element => {
 
   // TODO: do not hard code className. maybe use storybook or something. or use constants?
   // TODO: do I have to nest `div`s to make up such a layout with flex?
-  //     --------------
-  //
-  //     ----+---------
-  //         |
-  //     ----+---------
   return (
     <>
       <header>
@@ -124,11 +121,11 @@ export const App = (): JSX.Element => {
           </p>
           <div className="emmet-layout">
             {/* left element: user input */}
-            <div className="emmet-element">
-              <p className="emmet-element-title">
+            <div className="emmet-layout-element">
+              <p className="emmet-layout-element-title">
                 <textarea
                   rows={1}
-                  className="emmet-element-input"
+                  className="emmet-layout-element-title-input"
                   placeholder={placeholder}
                   onChange={handleTextAreaChange}
                   autoFocus={true}
@@ -139,8 +136,8 @@ export const App = (): JSX.Element => {
               <CodeBlock language={lang} code={expandedInput} />
             </div>
             {/* right element: expected code*/}
-            <div className="emmet-element">
-              <p className="emmet-element-title">Expected</p>
+            <div className="emmet-layout-element">
+              <p className="emmet-layout-element-title">Expected</p>
               <CodeBlock language={lang} code={expandedExpectation} />
             </div>
           </div>

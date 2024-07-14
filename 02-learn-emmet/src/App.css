@@ -1,3 +1,8 @@
+:root {
+  --problem-title-height: 40px;
+  --code-header-height: 40px;
+}
+
 *,
 *::before,
 *::after {
@@ -13,7 +18,7 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  /* TODO: Why `flex` is required to not overflow the screen width? */
+  /* FIXME: Why `flex` is required to not overflow the screen width? */
   display: flex;
 }
 
@@ -45,9 +50,10 @@ main {
 
 .emmet-problem-title {
   font-size: 32px;
-  /* TODO: is top margin zero good idea? */
-  margin: 0 0 0.2rem 0;
-  padding: 0;
+  /* TODO: is using bottom element's top marigin bad idea? */
+  padding: 8px 0 0 0;
+  margin: 0;
+  height: var(--problem-title-height);
 }
 
 /* TODO: CSS naming rule, such as this:
@@ -81,32 +87,39 @@ main {
 }
 
 .emmet-layout {
+  /* FIXME: */
   margin: 0px 2rem 0px 24px;
   display: flex;
   gap: 8px;
+  height: calc(100% - var(--problem-title-height));
 }
 
-.emmet-element {
+.emmet-layout-element {
   width: 100%;
+  height: 100%;
+  min-width: 0; /* do not expand when textare has wrong rows */
 }
 
-.emmet-element-title {
-  margin: 10px 0;
-  height: 24px;
+.emmet-layout-element-title {
+  margin: 0;
+  padding: 10px 0;
+  height: var(--code-header-height);
   font-size: 20px;
   text-align: left;
 }
 
-.emmet-element-input {
+.emmet-layout-element-title-input {
   resize: none;
   width: 100%;
 }
 
-.emmet-code {
-  height: calc(100vh - 200px);
+.emmet-layout-element-code {
+  /* overwrite prism.js default style margin. */
+  /* FIXME: should be set in code? */
+  margin: 0 0 5px 0 !important;
+  height: calc(100% - var(--code-header-height) - 5px);
 }
 
-/* FIXME: do not prevent from clicking the contents in the back */
 .emmet-ac {
   /* center */
   position: fixed;
