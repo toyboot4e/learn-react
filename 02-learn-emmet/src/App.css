@@ -1,5 +1,6 @@
 :root {
   --problem-title-height: 40px;
+  --sidebar-width: 120px;
   --code-header-height: 40px;
   --color-text: #000000d1;
 }
@@ -61,11 +62,11 @@ main {
 /* TODO: CSS naming rule, such as this:
    https://qiita.com/laineus/items/31108ce10259ef996c8c */
 .emmet-container {
-  width: 100%;
+  width: calc(100% - var(--sidebar-width));
 }
 
 .emmet-sidebar {
-  width: 120px;
+  width: var(--sidebar-width);
   background: green;
   /* FIXME: proper way to make up same space between the elements and the sidebar */
   padding: 6px 6px 0px 6px;
