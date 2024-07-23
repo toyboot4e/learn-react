@@ -3,6 +3,7 @@ import * as emmet from 'emmet';
 import { default as expand } from 'emmet';
 import { useState, JSX } from 'react';
 import { Problem, htmlProblems } from './Problem.ts';
+import { useParams } from 'react-router-dom';
 
 // TODO: only dev-dependency is enough?
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -64,6 +65,7 @@ export const Sidebar = ({
   currentProblem,
 }: SidebarProps): JSX.Element => {
   // TODO: <p> should full fill the row
+  // TODO: TODO: <Link> with parameters instead
   return (
     <div className="emmet-sidebar">
       {problems.map((p, i) => (
@@ -81,23 +83,27 @@ export const Sidebar = ({
   );
 };
 
+type Params = {
+  readonly problemUrl: string;
+};
+
 export const App = (): JSX.Element => {
   const lang = 'html';
   const placeholder = 'type abbreviaton syntax';
 
-  // TODO: use `useReducer`
-  const [problemNo, setProblemNo] = useState(1);
-  const problem = htmlProblems[problemNo];
+  const { problemUrl } = useParams<{ problemUrl: string }>();
+
+  // TODO: router vs `useReducer`.
+  // // TODO: use `useReducer`
+  // const [problemNo, setProblemNo] = useState(1);
+  // const problem = htmlProblems[problemNo];
+  const problemNo = htmlProblems.findIndex((p) => p.url == problemUrl);
+
+  // TODO: 404 on null problem before the app
+  const problem = htmlProblems[problemNo]!;
 
   const [input, setCode] = useState('');
   const expandedInput = expand(input);
-
-  if (problem === undefined) {
-    alert('Invalid problem no?');
-    // FIXME: type error
-    // TODO: set the problem no to zero, but forbidding infinite loop
-    return null;
-  }
 
   const expectation = problem.expected;
   const expandedExpectation = expand(expectation);

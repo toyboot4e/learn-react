@@ -6,7 +6,8 @@ export class Problem {
   constructor(title: string, expected: string) {
     this.title = title;
     // TODO: Is this core brect?
-    this.url = title.toLowerCase().replace(/\./gi, '_');
+    // this.url = title.toLowerCase().replace(/\./gi, '_');
+    this.url = title.toLowerCase();
     this.expected = expected;
   }
 }
