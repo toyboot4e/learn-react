@@ -8,6 +8,7 @@ import { Problem, htmlProblems } from './Problem.ts';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
+// TODO: DPI.
 // TODO: Separate files per component? Or easier layout.
 
 /** Properties of {@link CodeBlock}. */
@@ -66,12 +67,15 @@ export const Sidebar = ({
   return (
     <div className="emmet-sidebar">
       {problems.map((p, i) => (
-        <p className={i == currentProblem ? 'emmet-sidebar-current' : ''}>
+        <a
+          className={i == currentProblem ? 'emmet-sidebar-current' : ''}
+          href={p.url}
+        >
           <span className="emmet-sidebar-number">
             {`${String(i + 1).padStart(2, '0')}`}
           </span>
           {p.title}
-        </p>
+        </a>
       ))}
     </div>
   );

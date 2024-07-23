@@ -1,6 +1,7 @@
 :root {
   --problem-title-height: 40px;
   --code-header-height: 40px;
+  --color-text: #000000d1;
 }
 
 *,
@@ -20,6 +21,7 @@ body {
   margin: 0;
   /* FIXME: Why `flex` is required to not overflow the screen width? */
   display: flex;
+  color: var(--color-text);
 }
 
 #root {
@@ -71,7 +73,9 @@ main {
   text-align: left;
 }
 
-.emmet-sidebar > p {
+.emmet-sidebar > a {
+  display: block;
+  color: var(--color-text);
   padding: 6px 0px 6px 0px;
   margin: 0;
 }

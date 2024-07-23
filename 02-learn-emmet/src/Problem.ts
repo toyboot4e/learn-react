@@ -1,9 +1,12 @@
 export class Problem {
   readonly title: string;
+  readonly url: string;
   readonly expected: string;
 
   constructor(title: string, expected: string) {
     this.title = title;
+    // TODO: Is this core brect?
+    this.url = title.toLowerCase().replace(/\./gi, '_');
     this.expected = expected;
   }
 }
