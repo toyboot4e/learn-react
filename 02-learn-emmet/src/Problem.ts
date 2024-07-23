@@ -1,3 +1,7 @@
+export const normalizeProblemUrl = (url: string): string => {
+  return url.toLowerCase().replace(/\./gi, '_');
+};
+
 export class Problem {
   readonly title: string;
   readonly url: string;
@@ -6,8 +10,7 @@ export class Problem {
   constructor(title: string, expected: string) {
     this.title = title;
     // TODO: Is this core brect?
-    // this.url = title.toLowerCase().replace(/\./gi, '_');
-    this.url = title.toLowerCase();
+    this.url = normalizeProblemUrl(title);
     this.expected = expected;
   }
 }

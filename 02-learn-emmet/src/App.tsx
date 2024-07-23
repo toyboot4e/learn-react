@@ -2,7 +2,7 @@ import './App.css';
 import * as emmet from 'emmet';
 import { default as expand } from 'emmet';
 import { useState, JSX } from 'react';
-import { Problem, htmlProblems } from './Problem.ts';
+import { Problem, htmlProblems, normalizeProblemUrl } from './Problem.ts';
 import { useParams } from 'react-router-dom';
 
 // TODO: only dev-dependency is enough?
@@ -97,9 +97,13 @@ export const App = (): JSX.Element => {
   // // TODO: use `useReducer`
   // const [problemNo, setProblemNo] = useState(1);
   // const problem = htmlProblems[problemNo];
-  const problemNo = htmlProblems.findIndex((p) => p.url == problemUrl);
 
   // TODO: 404 on null problem before the app
+  // TODO: permissive match
+  const problemNo = htmlProblems.findIndex(
+    (p) => p.url == normalizeProblemUrl(problemUrl!),
+  );
+
   const problem = htmlProblems[problemNo]!;
 
   const [input, setCode] = useState('');
