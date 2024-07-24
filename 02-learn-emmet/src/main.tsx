@@ -6,6 +6,8 @@ import * as app from './App.tsx';
 import * as router from 'react-router-dom';
 import { Problem, htmlProblems } from './Problem.ts';
 import { NotFound } from './NotFound.tsx';
+import { ErrorBoundary } from './ErrorBoundary.tsx';
+import { ErrorPage } from './ErrorPage.tsx';
 
 // TODO: source directory structure (components, pages or atomic css model)
 
@@ -16,6 +18,7 @@ const gRouter = router.createBrowserRouter([
     // errorElement:
     // TODO: the problem pages should be created as a child frame (?)
     // children: [],
+    errorElement: <ErrorPage />,
   },
   {
     path: ':problemUrl',
@@ -24,13 +27,16 @@ const gRouter = router.createBrowserRouter([
     // errorElement:
   },
   {
-    path: '/404',
+    path: '*',
     element: <NotFound />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <router.RouterProvider router={gRouter} />
+    <ErrorBoundary>
+      <router.RouterProvider router={gRouter} />
+    </ErrorBoundary>
   </React.StrictMode>,
 );
