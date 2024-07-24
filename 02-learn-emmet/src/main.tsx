@@ -1,28 +1,33 @@
 export * from './App.tsx';
 
+import { App } from './App.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import * as app from './App.tsx';
 import * as router from 'react-router-dom';
 import { Problem, htmlProblems } from './Problem.ts';
 import { NotFound } from './NotFound.tsx';
 import { ErrorBoundary } from './ErrorBoundary.tsx';
 import { ErrorPage } from './ErrorPage.tsx';
+import { appLoader, AppElement } from './router/AppRouter.tsx';
 
+// TODO: sort imports
 // TODO: source directory structure (components, pages or atomic css model)
 
 const gRouter = router.createBrowserRouter([
+  // TODO: index page
+  // {
+  //   path: '/',
+  // },
   {
-    path: '/',
-    element: <app.App />,
-    // errorElement:
-    // TODO: the problem pages should be created as a child frame (?)
-    // children: [],
+    path: '/404',
+    element: <NotFound />,
     errorElement: <ErrorPage />,
   },
   {
-    path: ':problemUrl',
-    element: <app.App />,
+    path: '/:problemUrl',
+    loader: appLoader,
+    element: <AppElement />,
+    errorElement: <ErrorPage />,
     // TODO: navigate to 404 on error
     // errorElement:
   },

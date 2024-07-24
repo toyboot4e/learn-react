@@ -98,28 +98,15 @@ export const Sidebar = ({
   );
 };
 
-type Params = {
-  readonly problemUrl: string;
+/** Properties of {@link App}. */
+export type AppProps = {
+  readonly problemNo: number;
+  readonly problem: Problem;
 };
 
-export const App = (): JSX.Element => {
+export const App = ({ problemNo, problem }: AppProps): JSX.Element => {
   const lang = 'html';
   const placeholder = 'type abbreviaton syntax';
-
-  const { problemUrl } = useParams<{ problemUrl: string }>();
-
-  // TODO: router vs `useReducer`.
-  // // TODO: use `useReducer`
-  // const [problemNo, setProblemNo] = useState(1);
-  // const problem = htmlProblems[problemNo];
-
-  // TODO: 404 on null problem before the app
-  // TODO: permissive match
-  const problemNo = htmlProblems.findIndex(
-    (p) => p.url == normalizeProblemUrl(problemUrl!),
-  );
-
-  const problem = htmlProblems[problemNo]!;
 
   const [input, setCode] = useState('');
   const expandedInput = expand(input);
