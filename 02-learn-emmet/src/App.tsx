@@ -52,6 +52,20 @@ export const Acception = ({
   }
 };
 
+/** Properties of {@link Title}. */
+export type TitleProps = {
+  readonly problemNo: number;
+  readonly title: string;
+};
+
+export const Title = ({ problemNo, title }: TitleProps): JSX.Element => {
+  return (
+    <p className="emmet-problem-title">
+      {`${String(problemNo + 1).padStart(2, '0')} - ${title}`}
+    </p>
+  );
+};
+
 /** Properties of {@link Sidebar}. */
 export type SidebarProps = {
   readonly problems: Problem[];
@@ -131,9 +145,7 @@ export const App = (): JSX.Element => {
       <main>
         <Sidebar problems={htmlProblems} currentProblem={problemNo} />
         <div className="emmet-container">
-          <p className="emmet-problem-title">
-            {`${String(problemNo + 1).padStart(2, '0')} - ${problem.title}`}
-          </p>
+          <Title problemNo={problemNo} title={problem.title} />
           <div className="emmet-layout">
             {/* left element: user input */}
             <div className="emmet-layout-element">
