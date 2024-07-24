@@ -5,8 +5,10 @@ import ReactDOM from 'react-dom/client';
 import * as app from './App.tsx';
 import * as router from 'react-router-dom';
 import { Problem, htmlProblems } from './Problem.ts';
+import { NotFound } from './NotFound.tsx';
 
-// TODO: <Route> を配置していくのとどっちが良い？
+// TODO: source directory structure (components, pages or atomic css model)
+
 const gRouter = router.createBrowserRouter([
   {
     path: '/',
@@ -20,6 +22,10 @@ const gRouter = router.createBrowserRouter([
     element: <app.App />,
     // TODO: navigate to 404 on error
     // errorElement:
+  },
+  {
+    path: '/404',
+    element: <NotFound />,
   },
 ]);
 
