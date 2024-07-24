@@ -1,3 +1,6 @@
+// TODO: remember which problem was solved.
+// TODO: tips, cheat
+
 export const normalizeProblemUrl = (url: string): string => {
   return url.toLowerCase().replace(/\./gi, '_');
 };

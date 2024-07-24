@@ -1,3 +1,5 @@
+/* TODO: learn from the Rust Playground */
+
 :root {
   --problem-title-height: 40px;
   --sidebar-width: 120px;
@@ -51,16 +53,6 @@ main {
   display: flex;
 }
 
-.emmet-problem-title {
-  font-size: 32px;
-  /* TODO: is using bottom element's top marigin bad idea? */
-  padding: 8px 0 0 0;
-  margin: 0;
-  height: var(--problem-title-height);
-}
-
-/* TODO: CSS naming rule, such as this:
-   https://qiita.com/laineus/items/31108ce10259ef996c8c */
 .emmet-container {
   width: calc(100% - var(--sidebar-width));
 }
@@ -97,6 +89,14 @@ main {
   display: flex;
   gap: 8px;
   height: calc(100% - var(--problem-title-height));
+}
+
+.emmet-problem-title {
+  font-size: 32px;
+  /* TODO: is using bottom element's top marigin bad idea? */
+  padding: 8px 0 0 0;
+  margin: 0;
+  height: var(--problem-title-height);
 }
 
 .emmet-layout-element {

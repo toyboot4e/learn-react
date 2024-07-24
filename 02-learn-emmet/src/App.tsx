@@ -14,8 +14,8 @@ import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 /** Properties of {@link CodeBlock}. */
 export type CodeBlockProps = {
-  language: string;
-  code: string;
+  readonly language: string;
+  readonly code: string;
 };
 
 export const CodeBlock = ({ language, code }: CodeBlockProps): JSX.Element => {
@@ -54,9 +54,9 @@ export const Acception = ({
 
 /** Properties of {@link Sidebar}. */
 export type SidebarProps = {
-  problems: Problem[];
+  readonly problems: Problem[];
   /** Zero-based. */
-  currentProblem: number;
+  readonly currentProblem: number;
 };
 
 // TODO: collapsible
@@ -70,7 +70,8 @@ export const Sidebar = ({
     <div className="emmet-sidebar">
       {problems.map((p, i) => (
         <a
-          className={i == currentProblem ? 'emmet-sidebar-current' : ''}
+          key={i}
+          className={i === currentProblem ? 'emmet-sidebar-current' : ''}
           href={p.url}
         >
           <span className="emmet-sidebar-number">
@@ -143,9 +144,8 @@ export const App = (): JSX.Element => {
                   placeholder={placeholder}
                   onChange={handleTextAreaChange}
                   autoFocus={true}
-                >
-                  {input}
-                </textarea>
+                  value={input}
+                ></textarea>
               </p>
               <CodeBlock language={lang} code={expandedInput} />
             </div>
