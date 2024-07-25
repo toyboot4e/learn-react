@@ -10,6 +10,7 @@ interface ErrorBoundaryState {
 }
 
 // FIXME: show stack trace? (development mode)
+// https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary
 export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
@@ -30,6 +31,7 @@ export class ErrorBoundary extends React.Component<
   }
 
   override render() {
+    // TODO: what is this case?
     if (this.state.hasError) {
       return (
         <div>
