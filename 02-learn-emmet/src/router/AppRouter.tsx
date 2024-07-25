@@ -1,12 +1,10 @@
 import { JSX } from 'react';
 import { htmlProblems, normalizeProblemUrl } from '../Problem.ts';
 import { App, AppProps } from '../App.tsx';
-import { useLoaderData } from 'react-router-dom';
+import { LoaderFunction, useLoaderData } from 'react-router-dom';
 
 /** Redirects to `404` for invalid problems URLs */
-export const appLoader = ({ params }: { params: { problemUrl: string } }) => {
-  // which type is preferable?:
-  // export const appLoader: LoaderFunction = ({ params }) => {
+export const appLoader: LoaderFunction = ({ params }) => {
   const { problemUrl } = params;
   if (problemUrl === undefined) {
     // TODO: pass the original URL as context
