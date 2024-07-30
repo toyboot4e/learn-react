@@ -13,7 +13,7 @@ export const appLoader: LoaderFunction = ({ params }) => {
   }
 
   const problemNo = htmlProblems.findIndex(
-    (p) => p.url === normalizeProblemUrl(problemUrl),
+    (p) => p.slug === normalizeProblemUrl(problemUrl),
   );
 
   if (problemNo === -1) {

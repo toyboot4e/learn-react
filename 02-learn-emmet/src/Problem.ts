@@ -7,13 +7,13 @@ export const normalizeProblemUrl = (url: string): string => {
 
 export class Problem {
   readonly title: string;
-  readonly url: string;
+  readonly slug: string;
   readonly expected: string;
 
   constructor(title: string, expected: string) {
     this.title = title;
     // TODO: Is this core brect?
-    this.url = normalizeProblemUrl(title);
+    this.slug = normalizeProblemUrl(title);
     this.expected = expected;
   }
 }

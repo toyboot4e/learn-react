@@ -1,9 +1,8 @@
 import './App.css';
-import * as emmet from 'emmet';
 import { default as expand } from 'emmet';
 import { useState, JSX } from 'react';
-import { Problem, htmlProblems, normalizeProblemUrl } from './Problem.ts';
-import { useParams } from 'react-router-dom';
+import { Problem, htmlProblems } from './Problem.ts';
+import { Link } from 'react-router-dom';
 
 // TODO: only dev-dependency is enough?
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -11,6 +10,8 @@ import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 // TODO: DPI.
 // TODO: Separate files per component? Or easier layout.
+// TODO: Let user select indent size.
+// TODO: Cheat mode: show hints or answer on click at some point.
 
 /** Properties of {@link CodeBlock}. */
 export type CodeBlockProps = {
@@ -83,16 +84,18 @@ export const Sidebar = ({
   return (
     <div className="emmet-sidebar">
       {problems.map((p, i) => (
-        <a
+        <Link
           key={i}
           className={i === currentProblem ? 'emmet-sidebar-current' : ''}
-          href={p.url}
+          // The path contains `:problemId`, so use `../`:
+          to={'../' + p.slug}
+          relative="path"
         >
           <span className="emmet-sidebar-number">
             {`${String(i + 1).padStart(2, '0')}`}
           </span>
           {p.title}
-        </a>
+        </Link>
       ))}
     </div>
   );
@@ -150,6 +153,7 @@ export const App = ({ problemNo, problem }: AppProps): JSX.Element => {
             </div>
             {/* right element: expected code*/}
             <div className="emmet-layout-element">
+              {/* TODO: add cheat button */}
               <p className="emmet-layout-element-title">Expected</p>
               <CodeBlock language={lang} code={expandedExpectation} />
             </div>
