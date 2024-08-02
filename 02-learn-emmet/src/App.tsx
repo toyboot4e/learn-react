@@ -1,5 +1,5 @@
 import './App.css';
-import { default as expand } from 'emmet';
+import { default as unsafeExpand } from 'emmet';
 import { useState, JSX } from 'react';
 import { Problem, htmlProblems } from './Problem.ts';
 import { Link } from 'react-router-dom';
@@ -101,6 +101,21 @@ export const Sidebar = ({
   );
 };
 
+/** Tries to find the longest valid input and expands it. Returns `(expanded, isValid)`. */
+export const expandBestEffort = (code: string): [string, boolean] => {
+  var isValid = true;
+  for (let len = code.length; len >= 1; len--) {
+    const slice = code.slice(0, len);
+    try {
+      const expanded = unsafeExpand(slice);
+      return [expanded, isValid];
+    } catch (_) {
+      isValid = false;
+    }
+  }
+  return ['', isValid];
+};
+
 /** Properties of {@link App}. */
 export type AppProps = {
   readonly problemNo: number;
@@ -112,10 +127,10 @@ export const App = ({ problemNo, problem }: AppProps): JSX.Element => {
   const placeholder = 'type abbreviaton syntax';
 
   const [input, setCode] = useState('');
-  const expandedInput = expand(input);
+  const [expandedInput, isValidInput] = expandBestEffort(input);
 
   const expectation = problem.expected;
-  const expandedExpectation = expand(expectation);
+  const expandedExpectation = unsafeExpand(expectation);
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     // strip newline characters
@@ -160,7 +175,9 @@ export const App = ({ problemNo, problem }: AppProps): JSX.Element => {
           </div>
         </div>
 
-        <Acception isAccepted={expandedInput === expandedExpectation} />
+        <Acception
+          isAccepted={isValidInput && expandedInput === expandedExpectation}
+        />
       </main>
     </>
   );
