@@ -118,6 +118,14 @@ main {
   width: 100%;
 }
 
+.emmet-invalid-input {
+  outline-color: red;
+}
+
+.emmet-accepted-input {
+  outline-color: green;
+}
+
 .emmet-layout-element-code {
   /* overwrite prism.js default style margin. */
   /* FIXME: should be set in code? */

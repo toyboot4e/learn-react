@@ -53,6 +53,28 @@ export const Acception = ({
   }
 };
 
+/** Properties of {@link InvalidInputPopup}. */
+export type InvalidInputPopupProps = {
+  isValid: boolean;
+};
+
+/** The invalid input popup. */
+export const InvalidInputPopup = ({
+  isValid,
+}: InvalidInputPopupProps): JSX.Element | null => {
+  if (isValid) {
+    return null;
+  }
+
+  // TODO: animation
+  // TODO: never wrap, but fix in the screen, but not too big
+  return (
+    <div className="emmet-ac">
+      <p className="emmet-ac-text">✓ Accepted</p>
+    </div>
+  );
+};
+
 /** Properties of {@link Title}. */
 export type TitleProps = {
   readonly problemNo: number;
@@ -132,6 +154,8 @@ export const App = ({ problemNo, problem }: AppProps): JSX.Element => {
   const expectation = problem.expected;
   const expandedExpectation = unsafeExpand(expectation);
 
+  const isAccepted = isValidInput && expandedInput === expandedExpectation;
+
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     // strip newline characters
     e.target.value = e.target.value.replace(/[\r\n\v]+/g, '');
@@ -157,27 +181,25 @@ export const App = ({ problemNo, problem }: AppProps): JSX.Element => {
               <p className="emmet-layout-element-title">
                 <textarea
                   rows={1}
-                  className="emmet-layout-element-title-input"
+                  className={`emmet-layout-element-title-input ${isValidInput ? '' : 'emmet-invalid-input'} ${isAccepted ? 'emmet-accepted-input' : ''}`}
                   placeholder={placeholder}
                   onChange={handleTextAreaChange}
                   autoFocus={true}
                   value={input}
                 ></textarea>
               </p>
-              <CodeBlock language={lang} code={expandedInput} />
+              <CodeBlock language={lang} code={expandedInput} isValidInput={isValidInput} isAcceptedInput={isAccepted} />
             </div>
             {/* right element: expected code*/}
             <div className="emmet-layout-element">
               {/* TODO: add cheat button */}
               <p className="emmet-layout-element-title">Expected</p>
-              <CodeBlock language={lang} code={expandedExpectation} />
+              <CodeBlock language={lang} code={expandedExpectation} isValidInput={true} isAcceptedInput={false} />
             </div>
           </div>
         </div>
 
-        <Acception
-          isAccepted={isValidInput && expandedInput === expandedExpectation}
-        />
+        <Acception isAccepted={isAccepted} />
       </main>
     </>
   );
