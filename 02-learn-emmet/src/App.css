@@ -116,6 +116,8 @@ main {
 .emmet-layout-element-title-input {
   resize: none;
   width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .emmet-invalid-input {
